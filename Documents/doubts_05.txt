@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Notes Layout</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sticky-note {
+            background-color: #ffeb3b;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .add-note {
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Sticky Notes <span class="add-note">+</span></h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="sticky-note" id="note1">
+                    <h4 class="text-primary">Note 1</h4>
+                    <p>Small description for note 1.</p>
+                    <ul>
+                        <li>Task 1</li>
+                        <li>Task 2</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="sticky-note" id="note2">
+                    <h4 class="text-success">Note 2</h4>
+                    <p>Small description for note 2.</p>
+                    <ul>
+                        <li>Task 1</li>
+                        <li>Task 2</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="sticky-note" id="note3">
+                    <h4 class="text-danger">Note 3</h4>
+                    <p>Small description for note 3.</p>
+                    <ul>
+                        <li>Task 1</li>
+                        <li>Task 2</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+Binary Search:
+
+package Searching_Sorting;
+ 
+//Binary Search
+//Repeatedly divide the sorted array in half to find the target value.
+public class BinarySearch {
+  public static int binarySearch(int[] arr, int target)
+  { //				 0   1   2    3   4
+    //  int[] arr = {10, 20, 30, 40, 50};
+      int left = 0, right = arr.length - 1;//4
+      while (left <= right)//0<=4 ,3<=3
+      {
+          int mid = (left+right) / 2;//2 ,3
+          
+          if (arr[mid] == target)//30==40 ,40==40
+          	return mid;//40
+          if (arr[mid] < target)//30<40
+          	left = mid + 1;//left=3
+          else
+          	right = mid - 1;
+      }
+      return -1;
+  }
+ 
+  public static void main(String[] args) {
+	  //		   0   1   2    3   4
+      int[] arr = {10, 20, 30, 40, 50};
+      int index = binarySearch(arr, 40);//3
+      if(index !=-1)
+      	System.out.println("Element found at index: " + index);
+      else
+      	System.out.println("Element not found!! :" + index);
+  }
+}
+ 
+
+Bubble sort:
+
+package Searching_Sorting;
+ 
+//2.Bubble Sort
+//Repeatedly compare adjacent elements and swap them if they are in the wrong order.
+public class BubbleSort {
+  public static void bubbleSort(int[] arr)
+  {	//  0  1  2  3  4
+	//  5, 1, 4, 2, 8
+	//  1  5  4  2  8  
+	//  1  4  5  2  8
+	 // 1  4  2  5  8 pass 1
+	 // 1  4  2  5  8  
+	  //1  2  4  5  8  pass 2
+	  //1  2  4  5  8  pass 3
+	  //1  2  4  5  8  pass 4
+	  
+      int n = arr.length;//5
+      for (int i = 0; i < n - 1; i++) //i=0,1,2,3,4   0<4
+      {
+          for (int j = 0; j < n - 1 ; j++) //j=0,1,2,3    0<4
+          {
+              if (arr[j] > arr[j + 1]) //first value is greater than second value
+              {
+                  //Swap arr[j] and arr[j + 1]
+                  int temp = arr[j];
+                  arr[j] = arr[j + 1];
+                  arr[j + 1] = temp;
+              }
+          }
+      }
+  }
+ 
+  public static void main(String[] args) {
+      int[] arr = {5, 1, 4, 2, 8};
+      System.out.print("Before Sorting... ");
+      for (int num : arr) {
+          System.out.print(num + " ");
+      }
+      
+      bubbleSort(arr);
+      
+      System.out.println();
+      System.out.print("After Sorting... ");
+      for (int num : arr) {
+          System.out.print(num + " ");
+      }
+  }
+}
+ 
+
+insertion sort:-
+package Searching_Sorting;
+ 
+//3.Insertion Sort
+//Build the sorted part of the array by inserting elements in the correct position.
+public class InsertionSort {
+  public static void insertionSort(int[] arr) {
+  	//0   1   2   3   4
+  	//64, 25, 12, 22, 11
+	//25  64  12  22  11  
+	//12  25  64  22  11 	  
+	//12  22  25  64  11	  
+	//11  12  22  25  64
+      int n = arr.length;//5
+      for (int i = 1; i < n; i++) //i=1  1<5 //i=2 2<5 //i=3 3<5 //i=4 4<5 //i=5 5<5
+      {
+          int key = arr[i];//25,12,22,11
+          int j = i - 1;//0,1,2,3
+          while (j >= 0 && arr[j] > key)//1.0>=0 && 64>25  //2.1>=0 && 64>12, 0>=0 && 25>12
+          {							//3.2>=0 && 64>22,1>=0 && 25>22,0>=0 && 12>22
+        	  						//4.3>=0 && 64>11,2>=0 && 25>11,1>=0 && 22>11,0>=0 && 12>11
+              arr[j + 1] = arr[j];//arr[1]=64 //arr[2]=64,arr[1]=25
+              					//arr[3]=64,arr[2]=25 //arr[4]=64,arr[3]=25,arr[2]=22,arr[1]=12
+              j--;//-1 //0,-1 //1,0 //2,1,0,-1
+          }
+          arr[j + 1] = key;
+          //arr[0]=25 //arr[0]=12 //arr[1]=22 //arr[0]=11
+      }
+  }
+ 
+  public static void main(String[] args) {
+      int[] arr = {64, 25, 12, 22, 11};
+      insertionSort(arr);
+      for (int num : arr) {
+          System.out.print(num + " ");
+      }
+  }
+}
+
+Quick Sort:
+
+package Searching_Sorting;
+ 
+//5.Quick Sort
+//Pick a pivot, partition the array around the pivot, and recursively sort the subarrays.
+public class QuickSort
+{	//0   1  2  3  4   5
+	//12, 3, 5, 7, 19, 2
+	//2   3  5  7  19  12
+public static void quickSort(int[] arr, int low, int high)
+{
+     if (low < high) //0<5 //1<5 4<5 5<5//
+     {
+         int pi = partition(arr, low, high);//2 3  5  7  19  12 ,pi=0 pi=4 //l=1 h=5
+         quickSort(arr, low, pi - 1);//sorting left side by using pivot position
+         quickSort(arr, pi + 1, high);//sorting right side by using pivot position
+     }
+}
+ 
+private static int partition(int[] arr, int low, int high) {
+	 	//0   1  2  3  4   5  
+		//12, 3, 5, 7, 19, 2 	low=0 high=5
+	 	//2   3  5  7  19  12  pi=0 low=1 high=5
+	 	//2   3  5  7  12  19   pi=4 low=1 high=3
+	 	//2   3  5  7  12  19   pi=3 low=1 high=2
+     int pivot = arr[high];//2 //12 //7
+     int i = (low - 1);//i=-1 //i=0
+     for (int j = low; j < high; j++)//1.j=0,1,2,3,4,5 //2.j=1,2,3,4,5 //j=1,2
+     {
+         if (arr[j] < pivot) //12<2,3<2,5<2,7<2,19<2
+         {					//3<12,5<12,7<12,19<12	
+        	 				//3<7,5<7
+             i++;//1,2,3 //1,2
+             int temp = arr[i];//3,5,7 //3,5
+             arr[i] = arr[j];//3,5,7  //3,5
+             arr[j] = temp;//3,5,7   //3,5
+         }
+     }
+     int temp = arr[i + 1];//12,19,7--> if array element less than pivot then swapping
+     arr[i + 1] = arr[high];//arr[0]=2 //arr[4]=12 //arr[3]=7
+     arr[high] = temp;//arr[5]=12 //arr[5]=19  //arr[3]=7
+     return i + 1;//pi=0 //pi=4 //pi=3
+}
+ 
+public static void main(String[] args) {
+     int[] arr = {12, 3, 5, 7, 19, 2};
+     quickSort(arr, 0, arr.length - 1);
+     for (int num : arr) {
+         System.out.print(num + " ");
+     }
+}
+}
+
+Merge Sort:
+package Searching_Sorting;
+ 
+//4.Merge Sort
+//Divide the array into halves, sort each half, and merge them back together.
+public class MergeSort {
+  public static void mergeSort(int[] arr, int left, int right) {
+      if (left < right) //0<5
+      {	// 0  1   2   3  4  5
+      	//12, 11, 13, 5, 6, 7
+    	  // 0   1  2	          	  	3   4   5
+      	//L1=12 11 13 --> 			//R=12, 11, 13
+      	//L1=12 R1=11,13   --->		//L1=12,11 R1=13
+      	//L1=12 R1=11 R2=13 --> //L1=12 L2= 11 R1=13
+      	// [11 12 13]				
+    	  //Right side
+    	  //3  4  5 -->index
+    	  //5, 6, 7
+    	  //[5,6] [7]
+    	  //[5][6][7]
+    	  //[5,6][7]
+    	  //[5,6,7]
+    	  //L=[11 12 13] R=[]
+    	  //Result=[5,6,7,11 12 13]
+          int mid = left + (right - left) / 2;//2 1 1
+          mergeSort(arr, left, mid);//sort left side(arr,0,2),(arr,1,2),(arr,1,1)
+          mergeSort(arr, mid + 1, right);//sort right side(arr,3,5),(arr,3,4),(arr,3,3)
+          merge(arr, left, mid, right); //merge the sorted array
+      }
+  }
+  private static void merge(int[] arr, int left, int mid, int right)
+  {//	(arr,0,0,1)
+      int n1 = mid - left + 1;//1
+      int n2 = right - mid;//0
+ 
+      int[] L = new int[n1];//arr[1]=12
+      int[] R = new int[n2];//arr[0]=11
+ 
+      for (int i = 0; i < n1; i++)
+      	{
+      		L[i] = arr[left + i];
+      		//storing elments of left array
+      	}
+      for (int j = 0; j < n2; j++)
+      	{
+      		R[j] = arr[mid + 1 + j];
+      		//storing elment  of right array
+      	}
+ 
+      int i = 0, j = 0, k = left;
+      while (i < n1 && j < n2) //comparing two sorted subarray
+      {
+          if (L[i] <= R[j])
+          	arr[k++] = L[i++];//arr is original result array
+          else 				  // k store sorted elment on left side
+          	arr[k++] = R[j++];
+      }
+ 
+      while (i < n1)
+      	arr[k++] = L[i++];//remaining left sorted elements
+      while (j < n2)
+      	arr[k++] = R[j++];//remaining right sorted elements
+  }
+ 
+  public static void main(String[] args)
+  {
+      int[] arr = {12, 11, 13, 5, 6, 7};
+      
+      System.out.println("Before Sorting : ");
+      for (int num : arr) {
+          System.out.print(num + " ");
+      }
+      System.out.println();
+      
+      //calling
+      mergeSort(arr, 0, arr.length - 1);
+      
+      System.out.println("After Sorting : ");
+      for (int num : arr) {
+          System.out.print(num + " ");
+      }
+  }
+}
