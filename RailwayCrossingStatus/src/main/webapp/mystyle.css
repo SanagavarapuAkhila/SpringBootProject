@@ -1,0 +1,32 @@
+@charset "ISO-8859-1";
+div{
+text-align:center;
+}
+body{
+	
+            background-image : url("https://images.pexels.com/photos/325200/pexels-photo-325200.jpeg?cs=srgb&dl=railroad-railroad-track-railway-325200.jpg&fm=jpg");
+            background-repeat: no-repeat;
+            background-size:100%;
+            font-family: cursive, Brush Script MT;
+            text-align: center;
+            margin-top: 100px;
+       
+ 
+}
+
+button{
+background-color:pink;
+color:black;
+width:200px;
+height:35px;
+border-radius:50px;
+}
+
+input{
+border-radius:50px;
+height:25px;
+
+}
+
+
+
