@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+ xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation = "http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ <bean id="a" class="com.example.Animal">
+ <property name="eat" value="Eats Veg and Non Veg"></property>
+ </bean>
+ <bean id="t" class="com.example.Tiger" parent="a">
+ <property name="eat" value="Eats Only Non Veg"></property>
+ <property name="run" value="#{a.eat}"></property>
+ </bean>
+</beans>
+
